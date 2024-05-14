@@ -48,6 +48,8 @@ class HomeView extends StatelessWidget {
             Obx(() => DefaultTextStyle(
                   style: const TextStyle(fontSize: 20.0, color: Colors.white),
                   child: AnimatedTextKit(
+                    repeatForever: true,
+                    displayFullTextOnTap: true,
                     animatedTexts: [
                       WavyAnimatedText(
                         inputTextController.displayText.value,
