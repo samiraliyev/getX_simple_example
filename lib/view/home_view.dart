@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:getx_test/controller/app_controller.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,15 +15,21 @@ class HomeView extends StatelessWidget {
     final InputTextController inputTextController =
         Get.put(InputTextController());
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        centerTitle: true,
         title: const Text('AppBar'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             TextField(
+              style: const TextStyle(
+                color: Colors.white,
+              ),
               controller: _textEditingController,
               decoration: const InputDecoration(
                 label: Text("Enter your name"),
@@ -37,9 +45,19 @@ class HomeView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 20.0),
-            Obx(() => Text(
-                  inputTextController.displayText.value,
-                  style: const TextStyle(fontSize: 18.0),
+            Obx(() => DefaultTextStyle(
+                  style: const TextStyle(fontSize: 20.0, color: Colors.white),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      WavyAnimatedText(
+                        inputTextController.displayText.value,
+                      ),
+                      WavyAnimatedText(
+                        inputTextController.displayText.value,
+                      ),
+                    ],
+                    isRepeatingAnimation: true,
+                  ),
                 )),
           ],
         ),
